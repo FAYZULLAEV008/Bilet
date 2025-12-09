@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviya Chiptalari - Onlayn bron qilish</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e3a8a;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30, 64, 175, 0.9), rgba(59, 130, 246, 0.8)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        /* Search Form */
+        .search-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+        
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .search-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            align-self: flex-end;
+        }
+        
+        .search-btn:hover {
+            background-color: #d97706;
+        }
+        
+        /* Offers Section */
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .offer-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .offer-img {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .offer-content {
+            padding: 20px;
+        }
+        
+        .offer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .offer-destination {
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+        
+        .offer-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .offer-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #334155;
+            border-radius: 50%;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .search-form {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 50px 0;
+            }
+            
+            .offers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-plane"></i>
+                <span>Aviya Chiptalari</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home">Bosh sahifa</a></li>
+                    <li><a href="#flights">Chipta qidirish</a></li>
+                    <li><a href="#offers">Takliflar</a></li>
+                    <li><a href="#about">Biz haqimizda</a></li>
+                    <li><a href="#contact">Aloqa</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="btn btn-outline" id="loginBtn">Kirish</button>
+                <button class="btn btn-primary" id="registerBtn">Ro'yxatdan o'tish</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Dunyoning istalgan nuqtasiga uchish imkoniyati</h1>
+                <p>Eng arzon narxlarda aviya chiptalarini bron qiling. 500 dan ortiq aviakompaniyalar bilan hamkorlik</p>
+                <a href="#flights" class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 30px;">
+                    Chipta qidirish <i class="fas fa-search"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Form -->
+    <div class="container">
+        <div class="search-container" id="flights">
+            <h2 class="section-title">Chipta qidirish</h2>
+            <form class="search-form" id="searchForm">
+                <div class="form-group">
+                    <label for="from"><i class="fas fa-plane-departure"></i> Qayerdan</label>
+                    <input type="text" id="from" class="form-control" placeholder="Shahar yoki aeroport" value="Toshkent">
+                </div>
+                
+                <div class="form-group">
+                    <label for="to"><i class="fas fa-plane-arrival"></i> Qayerga</label>
+                    <input type="text" id="to" class="form-control" placeholder="Shahar yoki aeroport" value="Istanbul">
+                </div>
+                
+                <div class="form-group">
+                    <label for="departure"><i class="far fa-calendar-alt"></i> Ketish sanasi</label>
+                    <input type="date" id="departure" class="form-control" value="2023-10-15">
+                </div>
+                
+                <div class="form-group">
+                    <label for="return"><i class="far fa-calendar-alt"></i> Qaytish sanasi</label>
+                    <input type="date" id="return" class="form-control" value="2023-10-22">
+                </div>
+                
+                <div class="form-group">
+                    <label for="passengers"><i class="fas fa-users"></i> Yo'lovchilar</label>
+                    <select id="passengers" class="form-control">
+                        <option value="1">1 yo'lovchi</option>
+                        <option value="2" selected>2 yo'lovchi</option>
+                        <option value="3">3 yo'lovchi</option>
+                        <option value="4">4 yo'lovchi</option>
+                        <option value="5">5+ yo'lovchi</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="class"><i class="fas fa-chair"></i> Klass</label>
+                    <select id="class" class="form-control">
+                        <option value="economy">Ekonom klass</option>
+                        <option value="business">Biznes klass</option>
+                        <option value="first">Birinchi klass</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="airline"><i class="fas fa-plane"></i> Aviakompaniya</label>
+                    <select id="airline" class="form-control">
+                        <option value="all">Barchasi</option>
+                        <option value="uzairways">Uzbekistan Airways</option>
+                        <option value="turkish">Turkish Airlines</option>
+                        <option value="emirates">Emirates</option>
+                        <option value="qatar">Qatar Airways</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="search-btn">
+                    Chiptalarni ko'rish <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Special Offers -->
+    <div class="container">
+        <h2 class="section-title" id="offers">Maxsus Takliflar</h2>
+        <div class="offers-grid">
+            <div class="offer-card">
+                <div class="offer-img" style="background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="offer-content">
+                    <h3 class="offer-title">Toshkent - Istanbul</h3>
+                    <p class="offer-destination">Turkiya, Istanbul</p>
+                    <div class="offer-price">$320 dan</div>
+                    <div class="offer-meta">
+                        <span><i class="far fa-calendar"></i> 15-22 Okt</span>
+                        <span><i class="fas fa-plane"></i> Turkish Airlines</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="offer-card">
+                <div class="offer-img" style="background-image: url('https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="offer-content">
+                    <h3 class="offer-title">Toshkent - Dubay</h3>
+                    <p class="offer-destination">BAA, Dubay</p>
+                    <div class="offer-price">$450 dan</div>
+                    <div class="offer-meta">
+                        <span><i class="far fa-calendar"></i> 20-27 Okt</span>
+                        <span><i class="fas fa-plane"></i> Emirates</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="offer-card">
+                <div class="offer-img" style="background-image: url('https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="offer-content">
+                    <h3 class="offer-title">Toshkent - Moskva</h3>
+                    <p class="offer-destination">Rossiya, Moskva</p>
+                    <div class="offer-price">$280 dan</div>
+                    <div class="offer-meta">
+                        <span><i class="far fa-calendar"></i> 12-19 Okt</span>
+                        <span><i class="fas fa-plane"></i> Uzbekistan Airways</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="offer-card">
+                <div class="offer-img" style="background-image: url('https://images.unsplash.com/photo-1534351590666-13e3e96b5017?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="offer-content">
+                    <h3 class="offer-title">Toshkent - London</h3>
+                    <p class="offer-destination">Buyuk Britaniya, London</p>
+                    <div class="offer-price">$520 dan</div>
+                    <div class="offer-meta">
+                        <span><i class="far fa-calendar"></i> 18-25 Okt</span>
+                        <span><i class="fas fa-plane"></i> Qatar Airways</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="container">
+        <h2 class="section-title">Nega bizni tanlashadi?</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Xavfsiz bron qilish</h3>
+                <p>Bizning sayt orqali bron qilish butunlay xavfsiz va himoyalangan</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <h3>Eng yaxshi narxlar</h3>
+                <p>Biz sizga eng arzon narxlarda chiptalarni taqdim etamiz</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>24/7 mijozlar xizmati</h3>
+                <p>Kunduzi va kechasi sizga yordam berishga tayyormiz</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Tez bron qilish</h3>
+                <p>Bir necha daqiqada chiptangizni bron qilishingiz mumkin</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Aviya Chiptalari</h3>
+                    <p>Dunyoning istalgan nuqtasiga uchish imkoniyati. Eng arzon narxlarda aviya chiptalarini bron qiling.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Tez havolalar</h3>
+                    <ul>
+                        <li><a href="#home">Bosh sahifa</a></li>
+                        <li><a href="#flights">Chipta qidirish</a></li>
+                        <li><a href="#offers">Takliflar</a></li>
+                        <li><a href="#about">Biz haqimizda</a></li>
+                        <li><a href="#contact">Aloqa</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Bog'lanish</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Toshkent sh., Yunusobod t.</li>
+                        <li><i class="fas fa-phone"></i> +998 71 123 45 67</li>
+                        <li><i class="fas fa-envelope"></i> info@aviyachiptalari.uz</li>
+                        <li><i class="fas fa-clock"></i> Dushanba - Juma: 9:00 - 18:00</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Yangiliklar</h3>
+                    <p>Eng so'nggi takliflar va chegirmalar haqida xabardor bo'lish uchun obuna bo'ling.</p>
+                    <form id="newsletterForm" style="margin-top: 15px;">
+                        <input type="email" class="form-control" placeholder="Elektron pochta manzilingiz" style="margin-bottom: 10px;">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Obuna bo'lish</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Aviya Chiptalari. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form submit handler
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const from = document.getElementById('from').value;
+            const to = document.getElementById('to').value;
+            const departure = document.getElementById('departure').value;
+            const passengers = document.getElementById('passengers').value;
+            
+            alert(`Chipta qidirildi:\n${from} -> ${to}\nSana: ${departure}\nYo'lovchilar: ${passengers}`);
+        });
+        
+        // Login button handler
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            alert("Kirish sahifasi yaqinda ishga tushadi!");
+        });
+        
+        // Register button handler
+        document.getElementById('registerBtn').addEventListener('click', function() {
+            alert("Ro'yxatdan o'tish sahifasi yaqinda ishga tushadi!");
+        });
+        
+        // Newsletter form handler
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert("Obuna muvaffaqiyatli amalga oshirildi! Rahmat.");
+            this.reset();
+        });
+        
+        // Set min date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('departure').min = today;
+        document.getElementById('return').min = today;
+        
+        // Auto-set return date to 7 days after departure
+        document.getElementById('departure').addEventListener('change', function() {
+            const departureDate = new Date(this.value);
+            const returnDate = new Date(departureDate);
+            returnDate.setDate(returnDate.getDate() + 7);
+            
+            const returnFormatted = returnDate.toISOString().split('T')[0];
+            document.getElementById('return').value = returnFormatted;
+            document.getElementById('return').min = this.value;
+        });
+    </script>
+</body>
+</html>
